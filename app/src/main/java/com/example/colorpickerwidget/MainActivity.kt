@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -51,7 +50,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 data class ColorPickerSingleTab(val color: String, val width: Int)
 
 private val DarkColorPalette = darkColorScheme(
@@ -65,9 +63,9 @@ private val LightColorPalette = lightColorScheme(
 )
 
 @Composable
-fun DarkTheme(isDarkMode: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun DarkTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = if (isDarkMode) DarkColorPalette else LightColorPalette,
+        colorScheme = if (isSystemInDarkTheme()) DarkColorPalette else LightColorPalette,
         content = content
     )
 }
@@ -107,8 +105,7 @@ fun colorPickerTabs(colorPickerTabs: List<ColorPickerSingleTab>): String {
 
 @Composable
 fun ColorPicker(colorPickerTabs: List<ColorPickerSingleTab>) {
-    var isDarkMode by remember { mutableStateOf(false) } // Toggle dark mode
-    DarkTheme(isDarkMode = isDarkMode) {
+    DarkTheme {
         Column(
             modifier =
             Modifier
@@ -133,10 +130,6 @@ fun ColorPicker(colorPickerTabs: List<ColorPickerSingleTab>) {
                 Text(
                     text = selectedColor,
                     color = MaterialTheme.colorScheme.onBackground,
-                )
-                Switch(
-                    checked = isDarkMode,
-                    onCheckedChange = { isDarkMode = it }
                 )
             }
         }
