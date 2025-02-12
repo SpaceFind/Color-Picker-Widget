@@ -89,7 +89,7 @@ fun colorPickerTabs(colorPickerTabs: List<ColorPickerSingleTab>): String {
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        val totalWidth = colorList.sumOf { it.width }
+        val totalWidth = colorPickerTabs.sumOf { it.width }
         colorPickerTabs.forEach { colorPickerTab ->
             Box(
                 modifier = Modifier
