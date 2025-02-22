@@ -1,5 +1,6 @@
 package com.example.colorpickerwidget
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -136,7 +137,11 @@ fun ColorPicker(colorPickerTabs: List<ColorPickerSingleTab>) {
     }
 }
 
-@Preview
+@Preview(name = "Light Mode")
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "Dark Mode"
+)
 @Composable
 fun PreviewMessageCard() {
     ColorPicker(colorList)
